@@ -1,0 +1,16 @@
+---
+description: This project focuses on automation testing using a tech stack that includes CodeceptJS and Playwright. The primary goal is to write test scripts that execute automation tests effectively, ensuring the application functions as expected under various conditions.
+globs: 
+---
+Realistic User Interaction:
+The tests must simulate actual user behavior by accurately replicating cursor movements, hovers, clicks, and drags. This helps in verifying that all interactive elements—such as buttons, tooltips, and menus—respond correctly.
+
+UI Response Verification:
+By focusing on cursor behavior, the tests can confirm that the user interface reacts as intended. This includes checking for proper hover effects, dynamic content changes, and ensuring that clickable elements are responsive.
+
+Cross-Browser Consistency:
+Utilizing Playwright’s cross-browser capabilities, the Cursor Rule ensures that cursor interactions are consistent across different browsers and operating systems. This is crucial for maintaining a uniform user experience.
+
+Enhanced Usability and Accessibility:
+Incorporating this rule helps identify any issues that might affect usability or accessibility. For example, tests can catch instances where a hover state might not trigger the expected visual cues or where a click does not lead to the correct action.
+

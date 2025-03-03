@@ -1,0 +1,45 @@
+{
+  "name": "automation-testing",
+  "version": "1.0.0",
+  "description": "E2E Testing with CodeceptJS and Playwright",
+  "scripts": {
+    "test": "codeceptjs run --steps",
+    "test:headless": "codeceptjs run --steps --verbose",
+    "test:ui": "codeceptjs run --steps --verbose --plugins allure",
+    "test:parallel": "codeceptjs run-parallel --steps",
+    "test:smoke": "codeceptjs run --grep @smoke",
+    "test:api": "codeceptjs run --grep @api",
+    "allure:report": "allure serve output/reports",
+    "allure:history": "allure generate output/reports",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,js,json}\"",
+    "clean": "rimraf output reports allure-results",
+    "pretest": "npm run clean"
+  },
+  "dependencies": {
+    "@codeceptjs/configure": "^1.0.2",
+    "@codeceptjs/examples": "^1.2.4",
+    "@codeceptjs/helper": "^2.0.4",
+    "@codeceptjs/ui": "^1.2.2",
+    "codeceptjs": "^3.7.2",
+    "codeceptjs-chai": "^2.3.5",
+    "dotenv": "^16.3.1",
+    "playwright": "^1.50.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@codeceptjs/allure-legacy": "^1.0.2",
+    "@types/chai": "^5.0.1",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "allure-commandline": "^2.32.2",
+    "chai": "^5.2.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.2"
+  }
+}
