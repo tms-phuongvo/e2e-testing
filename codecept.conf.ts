@@ -5,27 +5,30 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 
-// Turn on headless mode when running with HEADLESS=true environment variable
-setHeadlessWhen(process.env.HEADLESS);
+setHeadlessWhen(process.env.HEADLESS === "true");
 
 // Enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
 setCommonPlugins();
 
 export const config = {
-  name: "codeceptjs-playwright",
-  tests: "./{tests/e2e/features,tests/api}/**/*_test.ts",
+  name: "Automation Testing",
+  tests: "./{tests/e2e/features, tests/api}/**/*_test.ts",
   output: "./output",
   helpers: {
     Playwright: {
-      url: process.env.BASE_URL || "http://localhost:3000",
-      show: true,
+      url: process.env.WEBSITE_URL || "http://localhost:3000",
       browser: "chromium",
       waitForNavigation: "domcontentloaded",
       waitForTimeout: 5000,
+      show: true,
       trace: true,
       video: true,
       windowSize: "1920x1080",
       emulate: devices["Desktop Chrome"],
+      basicAuth: {
+        username: process.env.BASIC_AUTH_USERNAME,
+        password: process.env.BASIC_AUTH_PASSWORD
+      },
       chromium: {
         args: ["--no-sandbox"]
       }
@@ -55,8 +58,10 @@ export const config = {
   },
   include: {
     I: "./tests/steps_file.ts",
-    loginPage: "./tests/e2e/pages/login.page.ts",
-    homePage: "./tests/e2e/pages/home.page.ts"
+    LoginPage: "./tests/e2e/pages/login.page.ts",
+    HomePage: "./tests/e2e/pages/home.page.ts",
+    ProfilePage: "./tests/e2e/pages/profile.page.ts",
+    SettingsPage: "./tests/e2e/pages/settings.page.ts"
   },
   plugins: {
     allure: {

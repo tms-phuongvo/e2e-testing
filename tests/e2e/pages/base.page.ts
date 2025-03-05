@@ -1,4 +1,4 @@
-export class BasePage {
+ export class BasePage {
   protected I: CodeceptJS.I;
   protected url: string;
 

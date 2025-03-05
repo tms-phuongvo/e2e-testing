@@ -1,8 +1,17 @@
-import Helper from "@codeceptjs/helper";
+import { Helper } from "codeceptjs";
 import { Cookie } from "playwright";
 
-export default class AuthHelper extends Helper {
+class AuthHelper extends Helper {
   private cookies: Cookie[] = [];
+
+  // before/after hooks
+  _before() {
+    // remove if not used
+  }
+
+  _after() {
+    // remove if not used
+  }
 
   /**
    * Login using API and set cookies for browser
@@ -63,3 +72,5 @@ export default class AuthHelper extends Helper {
     return cookies.some((cookie: Cookie) => cookie.name === "auth_token");
   }
 }
+
+export = AuthHelper;

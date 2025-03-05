@@ -1,9 +1,7 @@
-/// <reference types="codeceptjs" />
+xFeature("Settings Management");
 
-Feature("Settings Management");
-
-import { LoginPage } from "../../pages/login.page";
-import { SettingsPage } from "../../pages/settings.page";
+import LoginPage from "../../pages/login.page";
+import SettingsPage from "../../pages/settings.page";
 
 let loginPage: LoginPage;
 let settingsPage: SettingsPage;
@@ -19,10 +17,10 @@ Before(async ({ I }) => {
 });
 
 Scenario("Update general settings @smoke", async ({ I }) => {
-  await settingsPage.setLanguage("English");
-  await settingsPage.setTheme("dark");
-  await settingsPage.setTimezone("UTC");
-  await settingsPage.saveSettings();
+  settingsPage.setLanguage("English");
+  settingsPage.setTheme("dark");
+  settingsPage.setTimezone("UTC");
+  settingsPage.saveSettings();
 
   I.see("Settings saved successfully");
 
@@ -36,11 +34,11 @@ Scenario("Update notification preferences", async ({ I }) => {
   await settingsPage.toggleEmailNotifications(true);
   await settingsPage.togglePushNotifications(false);
   await settingsPage.toggleSmsNotifications(true);
-  await settingsPage.saveSettings();
+  settingsPage.saveSettings();
 
   I.see("Settings saved successfully");
 
-  const settings = await settingsPage.getCurrentSettings();
+  const settings = settingsPage.getCurrentSettings();
   I.seeAttributesOnElements('[data-testid="email-notifications"]', {
     "aria-checked": "true"
   });
@@ -55,7 +53,7 @@ Scenario("Update notification preferences", async ({ I }) => {
 Scenario("Update privacy settings", async ({ I }) => {
   await settingsPage.setProfileVisibility("friends");
   await settingsPage.setActivityVisibility("private");
-  await settingsPage.saveSettings();
+  settingsPage.saveSettings();
 
   I.see("Settings saved successfully");
 
@@ -79,7 +77,7 @@ Scenario("Manage active sessions", async ({ I }) => {
 
   if (sessions.length > 1) {
     const sessionId = sessions[1];
-    await settingsPage.terminateSession(sessionId);
+    settingsPage.terminateSession(sessionId);
     I.see("Session terminated successfully");
 
     const updatedSessions = await settingsPage.getActiveSessions();

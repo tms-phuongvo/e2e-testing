@@ -1,51 +1,51 @@
-import { BasePage } from './base.page';
+import { BasePage } from "./base.page";
 
-export class SettingsPage extends BasePage {
+class SettingsPage extends BasePage {
   // General settings
   private languageSelect = '[data-testid="language-select"]';
   private themeSelect = '[data-testid="theme-select"]';
   private timezoneSelect = '[data-testid="timezone-select"]';
-  
+
   // Notification settings
   private emailNotifications = '[data-testid="email-notifications"]';
   private pushNotifications = '[data-testid="push-notifications"]';
   private smsNotifications = '[data-testid="sms-notifications"]';
-  
+
   // Privacy settings
   private profileVisibility = '[data-testid="profile-visibility"]';
   private activityVisibility = '[data-testid="activity-visibility"]';
-  
+
   // Security settings
   private twoFactorToggle = '[data-testid="2fa-toggle"]';
   private sessionManagement = '[data-testid="session-management"]';
   readonly deviceList = '[data-testid="device-list"]';
-  
+
   // Save button
   private saveButton = '[data-testid="save-settings"]';
   private successMessage = '[data-testid="success-message"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, '/settings');
+    super(I, "/settings");
   }
 
   /**
    * Update language setting
    */
-  async setLanguage(language: string) {
+  setLanguage(language: string) {
     this.I.selectOption(this.languageSelect, language);
   }
 
   /**
    * Update theme setting
    */
-  async setTheme(theme: 'light' | 'dark' | 'system') {
+  setTheme(theme: "light" | "dark" | "system") {
     this.I.selectOption(this.themeSelect, theme);
   }
 
   /**
    * Update timezone setting
    */
-  async setTimezone(timezone: string) {
+  setTimezone(timezone: string) {
     this.I.selectOption(this.timezoneSelect, timezone);
   }
 
@@ -53,7 +53,10 @@ export class SettingsPage extends BasePage {
    * Toggle email notifications
    */
   async toggleEmailNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(this.emailNotifications, 'aria-checked');
+    const current = await this.I.grabAttributeFrom(
+      this.emailNotifications,
+      "aria-checked"
+    );
     if (current !== String(enable)) {
       this.clickElement(this.emailNotifications);
     }
@@ -63,7 +66,10 @@ export class SettingsPage extends BasePage {
    * Toggle push notifications
    */
   async togglePushNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(this.pushNotifications, 'aria-checked');
+    const current = await this.I.grabAttributeFrom(
+      this.pushNotifications,
+      "aria-checked"
+    );
     if (current !== String(enable)) {
       this.clickElement(this.pushNotifications);
     }
@@ -73,7 +79,10 @@ export class SettingsPage extends BasePage {
    * Toggle SMS notifications
    */
   async toggleSmsNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(this.smsNotifications, 'aria-checked');
+    const current = await this.I.grabAttributeFrom(
+      this.smsNotifications,
+      "aria-checked"
+    );
     if (current !== String(enable)) {
       this.clickElement(this.smsNotifications);
     }
@@ -82,14 +91,14 @@ export class SettingsPage extends BasePage {
   /**
    * Set profile visibility
    */
-  async setProfileVisibility(visibility: 'public' | 'private' | 'friends') {
+  async setProfileVisibility(visibility: "public" | "private" | "friends") {
     this.I.selectOption(this.profileVisibility, visibility);
   }
 
   /**
    * Set activity visibility
    */
-  async setActivityVisibility(visibility: 'public' | 'private' | 'friends') {
+  async setActivityVisibility(visibility: "public" | "private" | "friends") {
     this.I.selectOption(this.activityVisibility, visibility);
   }
 
@@ -97,7 +106,10 @@ export class SettingsPage extends BasePage {
    * Toggle two-factor authentication
    */
   async toggleTwoFactor(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(this.twoFactorToggle, 'aria-checked');
+    const current = await this.I.grabAttributeFrom(
+      this.twoFactorToggle,
+      "aria-checked"
+    );
     if (current !== String(enable)) {
       this.clickElement(this.twoFactorToggle);
     }
@@ -113,14 +125,14 @@ export class SettingsPage extends BasePage {
   /**
    * Terminate a specific session
    */
-  async terminateSession(sessionId: string) {
+  terminateSession(sessionId: string) {
     this.clickElement(`[data-session-id="${sessionId}"] .terminate-button`);
   }
 
   /**
    * Save all settings
    */
-  async saveSettings() {
+  saveSettings() {
     this.clickElement(this.saveButton);
   }
 
@@ -134,17 +146,31 @@ export class SettingsPage extends BasePage {
   /**
    * Get current settings
    */
-  async getCurrentSettings() {
+  getCurrentSettings() {
     return {
       language: this.I.grabValueFrom(this.languageSelect),
       theme: this.I.grabValueFrom(this.themeSelect),
       timezone: this.I.grabValueFrom(this.timezoneSelect),
-      emailNotifications: this.I.grabAttributeFrom(this.emailNotifications, 'aria-checked'),
-      pushNotifications: this.I.grabAttributeFrom(this.pushNotifications, 'aria-checked'),
-      smsNotifications: this.I.grabAttributeFrom(this.smsNotifications, 'aria-checked'),
+      emailNotifications: this.I.grabAttributeFrom(
+        this.emailNotifications,
+        "aria-checked"
+      ),
+      pushNotifications: this.I.grabAttributeFrom(
+        this.pushNotifications,
+        "aria-checked"
+      ),
+      smsNotifications: this.I.grabAttributeFrom(
+        this.smsNotifications,
+        "aria-checked"
+      ),
       profileVisibility: this.I.grabValueFrom(this.profileVisibility),
       activityVisibility: this.I.grabValueFrom(this.activityVisibility),
-      twoFactorEnabled: this.I.grabAttributeFrom(this.twoFactorToggle, 'aria-checked')
+      twoFactorEnabled: this.I.grabAttributeFrom(
+        this.twoFactorToggle,
+        "aria-checked"
+      )
     };
   }
-} 
+}
+
+export default SettingsPage;

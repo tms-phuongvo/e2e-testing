@@ -1,18 +1,18 @@
-import { BasePage } from './base.page';
+import { BasePage } from "./base.page";
 
-export class HomePage extends BasePage {
+class HomePage extends BasePage {
   // Header locators
   private userMenuButton = '[data-testid="user-menu"]';
   private logoutButton = '[data-testid="logout-button"]';
   private searchInput = '[data-testid="search-input"]';
   private searchButton = '[data-testid="search-button"]';
-  
+
   // Main content locators
   private welcomeMessage = '[data-testid="welcome-message"]';
   private notificationBell = '[data-testid="notification-bell"]';
   private notificationCount = '[data-testid="notification-count"]';
   private mainContent = '[data-testid="main-content"]';
-  
+
   // Sidebar locators
   private sidebar = '[data-testid="sidebar"]';
   private dashboardLink = '[data-testid="nav-dashboard"]';
@@ -20,7 +20,7 @@ export class HomePage extends BasePage {
   private settingsLink = '[data-testid="nav-settings"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, '/dashboard');
+    super(I, "/dashboard");
   }
 
   /**
@@ -81,4 +81,6 @@ export class HomePage extends BasePage {
   async isOnDashboard(): Promise<boolean> {
     return this.hasElement(this.mainContent);
   }
-} 
+}
+
+export default HomePage;

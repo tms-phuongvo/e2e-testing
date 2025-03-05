@@ -1,35 +1,32 @@
-Feature('Authentication');
+Feature("Authentication");
 
-import { LoginPage } from '../../pages/login.page';
+import LoginPage from "../../pages/login.page";
 
-let loginPage: LoginPage;
+let page: LoginPage;
 
 Before(({ I }) => {
-  loginPage = new LoginPage(I);
+  page = new LoginPage(I);
 });
 
-Scenario('Login with valid credentials @smoke', async ({ I }) => {
-  loginPage.goto();
-  await loginPage.login('test@example.com', 'password123');
-  
-  I.see('Welcome back!');
-  I.seeCurrentUrlEquals('/dashboard');
-}).tag('@auth');
+Scenario("TC1: Login with valid credentials @smoke", async ({ I }) => {
+  page.goto();
+  page.login("phuong.vo@tomosia.com", "phuongvo77");
 
-Scenario('Login with invalid credentials', async ({ I }) => {
-  await loginPage.goto();
-  await loginPage.login('invalid@example.com', 'wrongpassword');
-  
-  I.seeElement('.error-message');
-  I.see('Invalid email or password', '.error-message');
-  I.seeCurrentUrlEquals('/login');
-}).tag('@auth');
+  I.seeCurrentUrlEquals("/sessions/two-factor/app");
+}).tag("@auth");
 
-Scenario('Clear login form', async ({ I }) => {
-  await loginPage.goto();
-  await loginPage.login('test@example.com', 'password123');
-  await loginPage.clearForm();
-  
-  I.seeInField('#email', '');
-  I.seeInField('#password', '');
-}).tag('@auth'); 
+Scenario("Login with invalid credentials", async ({ I }) => {
+  page.goto();
+  page.login("invalid@example.com", "wrongpassword");
+  page.seeError("Incorrect email or password.");
+
+  I.seeCurrentUrlEquals("/session");
+}).tag("@auth");
+
+Scenario("User forgot password", async ({ I }) => {
+  page.goto();
+  page.forgotPassword();
+  I.seeCurrentUrlEquals("/password_reset");
+  I.fillField("//input[@name='email']", "phuong.vo@tomosia.com");
+  I.click("//input[@name='commit']");
+}).tag("@auth");

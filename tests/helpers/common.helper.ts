@@ -1,6 +1,6 @@
-import Helper from "@codeceptjs/helper";
+import { Helper } from "codeceptjs";
 
-export default class CommonHelper extends Helper {
+class CommonHelper extends Helper {
   /**
    * Wait for element to be visible and clickable
    */
@@ -83,3 +83,5 @@ export default class CommonHelper extends Helper {
     return await Playwright.grabCurrentUrl();
   }
 }
+
+export = CommonHelper;

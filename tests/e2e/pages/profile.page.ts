@@ -1,6 +1,6 @@
-import { BasePage } from './base.page';
+import { BasePage } from "./base.page";
 
-export class ProfilePage extends BasePage {
+class ProfilePage extends BasePage {
   // Profile form locators
   private nameInput = '[data-testid="profile-name"]';
   private emailInput = '[data-testid="profile-email"]';
@@ -22,13 +22,13 @@ export class ProfilePage extends BasePage {
   private changePasswordButton = '[data-testid="change-password"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, '/profile');
+    super(I, "/profile");
   }
 
   /**
    * Update profile information
    */
-  async updateProfile(data: {
+  updateProfile(data: {
     name?: string;
     email?: string;
     phone?: string;
@@ -38,14 +38,14 @@ export class ProfilePage extends BasePage {
     if (data.email) this.fillInput(this.emailInput, data.email);
     if (data.phone) this.fillInput(this.phoneInput, data.phone);
     if (data.address) this.fillInput(this.addressInput, data.address);
-    
+
     this.clickElement(this.saveButton);
   }
 
   /**
    * Change password
    */
-  async changePassword(currentPassword: string, newPassword: string) {
+  changePassword(currentPassword: string, newPassword: string) {
     this.fillInput(this.currentPasswordInput, currentPassword);
     this.fillInput(this.newPasswordInput, newPassword);
     this.fillInput(this.confirmPasswordInput, newPassword);
@@ -55,14 +55,14 @@ export class ProfilePage extends BasePage {
   /**
    * Upload avatar
    */
-  async uploadAvatar(filePath: string) {
+  uploadAvatar(filePath: string) {
     this.I.attachFile(this.avatarUpload, filePath);
   }
 
   /**
    * Remove avatar
    */
-  async removeAvatar() {
+  removeAvatar() {
     this.clickElement(this.removeAvatarButton);
   }
 
@@ -85,10 +85,12 @@ export class ProfilePage extends BasePage {
    */
   async getProfileData() {
     return {
-      name: this.I.grabValueFrom(this.nameInput),
-      email: this.I.grabValueFrom(this.emailInput),
-      phone: this.I.grabValueFrom(this.phoneInput),
-      address: this.I.grabValueFrom(this.addressInput)
+      name: await this.I.grabValueFrom(this.nameInput),
+      email: await this.I.grabValueFrom(this.emailInput),
+      phone: await this.I.grabValueFrom(this.phoneInput),
+      address: await this.I.grabValueFrom(this.addressInput)
     };
   }
-} 
+}
+
+export default ProfilePage;

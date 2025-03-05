@@ -1,44 +1,61 @@
-import { BasePage } from './base.page';
+import { BasePage } from "./base.page";
 
-export class LoginPage extends BasePage {
+class LoginPage extends BasePage {
   // Locators
-  private emailInput = '#email';
-  private passwordInput = '#password';
-  private loginButton = 'button[type="submit"]';
-  private errorMessage = '.error-message';
+  private emailInput = "#login_field";
+  private passwordInput = "#password";
+  private loginButton = "//input[@type='submit']";
+  private errorMessage = ".js-flash-alert";
+  private forgotPasswordLink = "#forgot-password";
 
   constructor(I: CodeceptJS.I) {
-    super(I, '/login');
+    super(I, "/login");
   }
 
   /**
    * Login with email and password
    */
-  async login(email: string, password: string) {
-    this.fillInput(this.emailInput, email);
-    this.fillInput(this.passwordInput, password);
-    this.clickElement(this.loginButton);
+  login(email: string, password: string) {
+    this.I.fillField(this.emailInput, email);
+    this.I.fillField(this.passwordInput, password);
+    this.I.click(this.loginButton);
+  }
+
+  /**
+   * Click forgot password link
+   */
+  forgotPassword() {
+    this.I.click(this.forgotPasswordLink);
   }
 
   /**
    * Get error message if login fails
    */
-  async getErrorMessage(): Promise<string> {
-    return this.getText(this.errorMessage);
+  getErrorMessage(): Promise<string> {
+    return this.I.grabTextFrom(this.errorMessage);
+  }
+
+  /**
+   * See error message
+   */
+  seeError(message: string) {
+    this.I.see(message, this.errorMessage);
   }
 
   /**
    * Check if error message is displayed
    */
-  async hasError(): Promise<boolean> {
-    return this.hasElement(this.errorMessage);
+  hasError() {
+    this.I.seeElement(this.errorMessage);
   }
 
   /**
    * Clear login form
    */
-  async clearForm() {
-    this.fillInput(this.emailInput, '');
-    this.fillInput(this.passwordInput, '');
+  clearForm() {
+    this.I.fillField(this.emailInput, "");
+    this.I.fillField(this.passwordInput, "");
   }
-} 
+}
+
+export default LoginPage;

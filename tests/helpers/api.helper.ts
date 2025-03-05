@@ -1,6 +1,6 @@
-import Helper from "@codeceptjs/helper";
+import { Helper } from "codeceptjs";
 
-export default class APIHelper extends Helper {
+class APIHelper extends Helper {
   private token: string = "";
 
   /**
@@ -62,3 +62,5 @@ export default class APIHelper extends Helper {
     return headers;
   }
 }
+
+export = APIHelper;

@@ -1,4 +1,4 @@
-# E2E Testing Boilerplate with CodeceptJS
+# E2E Testing Boilerplate with CodeceptJS 
 
 This is a boilerplate project for end-to-end testing using CodeceptJS with Playwright. It includes a complete setup for both UI and API testing, with built-in support for parallel execution, multiple browsers, and comprehensive reporting.
 
@@ -37,7 +37,7 @@ npm install
 
 3. Create a `.env` file in the root directory:
 ```env
-BASE_URL=http://localhost:3000
+WEBSITE_URL=http://localhost:3000
 API_URL=http://localhost:3001
 HEADLESS=false
 ```
@@ -51,15 +51,18 @@ HEADLESS=false
 │   ├── e2e/              
 │   │   ├── features/      # Test scenarios
 │   │   ├── pages/         # Page objects
-│   │   └── fragments/     # Reusable page fragments
 │   └── helpers/           # Custom helpers
 ├── output/                # Test artifacts
 └── codecept.conf.ts      # CodeceptJS configuration
 ```
 
+## Setup Project
+
 ```bash
-npx codeceptjs def
+npx codeceptjs def # Convert codecept configuration to step type
+npx playwright install # Install playwright for OS
 ```
+
 ## Running Tests
 
 ### Run all tests
@@ -80,6 +83,11 @@ npm run test:ui
 ### Run tests in parallel
 ```bash
 npm run test:parallel
+```
+
+### Run with tag
+```bash
+npm run test:tag @tag_name
 ```
 
 ### Run smoke tests only
@@ -110,7 +118,7 @@ npm run allure:history
 ```typescript
 Feature('Authentication');
 
-Scenario('Login with valid credentials @smoke', async ({ I, loginPage }) => {
+Scenario('Login with valid credentials', async ({ I, loginPage }) => {
   loginPage.goto();
   loginPage.login('test@example.com', 'password123');
   
@@ -144,14 +152,7 @@ Scenario('Login with valid credentials @api', async ({ I }) => {
 6. Handle authentication properly
 7. Clean up test data after execution
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+TOMOSIA VIET NAM  
