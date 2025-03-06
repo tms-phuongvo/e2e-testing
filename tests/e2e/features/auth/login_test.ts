@@ -16,7 +16,7 @@ Scenario('TC1: Login with valid credentials @smoke', async ({ I }) => {
 
 Scenario('Login with invalid credentials', async ({ I }) => {
   page.goto();
-  page.login('invalid@example.com', 'wrongpassword');
+  page.login('invalidmail@example.com', 'wrongpassword');
   page.seeError('Incorrect username or password.');
 
   I.seeCurrentUrlEquals('/session');
