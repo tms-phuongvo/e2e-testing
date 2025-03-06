@@ -10,7 +10,7 @@ Before(({ I }) => {
 
 Scenario('TC1: Login with valid credentials @smoke', async ({ I }) => {
   page.goto();
-  page.login('phuong.vo@tomosia.com', 'phuongvo77');
+  page.login('le.le@tomosia.com', 'Lemyle@123');
   I.seeCurrentUrlEquals('/sessions/two-factor/app');
 }).tag('@auth');
 
