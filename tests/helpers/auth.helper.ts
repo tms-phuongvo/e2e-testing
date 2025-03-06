@@ -1,5 +1,5 @@
-import { Helper } from "codeceptjs";
-import { Cookie } from "playwright";
+import { Helper } from 'codeceptjs';
+import { Cookie } from 'playwright';
 
 class AuthHelper extends Helper {
   private cookies: Cookie[] = [];
@@ -19,20 +19,20 @@ class AuthHelper extends Helper {
   async loginViaAPI(email: string, password: string) {
     const { REST } = this.helpers;
 
-    const response = await REST.sendPostRequest("/api/auth/login", {
+    const response = await REST.sendPostRequest('/api/auth/login', {
       email,
-      password
+      password,
     });
 
-    const cookies = response.headers["set-cookie"];
+    const cookies = response.headers['set-cookie'];
     if (cookies) {
       this.cookies = cookies.map((cookie: string) => {
-        const [name, value] = cookie.split(";")[0].split("=");
+        const [name, value] = cookie.split(';')[0].split('=');
         return {
           name,
           value,
-          domain: process.env.DOMAIN || "localhost",
-          path: "/"
+          domain: process.env.DOMAIN || 'localhost',
+          path: '/',
         };
       });
     }
@@ -69,7 +69,7 @@ class AuthHelper extends Helper {
     const { Playwright } = this.helpers;
     const context = await Playwright._getContext();
     const cookies = await context.cookies();
-    return cookies.some((cookie: Cookie) => cookie.name === "auth_token");
+    return cookies.some((cookie: Cookie) => cookie.name === 'auth_token');
   }
 }
 

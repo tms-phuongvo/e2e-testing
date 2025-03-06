@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export class ApiUtils {
   private api: AxiosInstance;
@@ -8,8 +8,8 @@ export class ApiUtils {
       baseURL,
       timeout: 10000,
       headers: {
-        "Content-Type": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
     });
   }
 

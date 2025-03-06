@@ -15,18 +15,11 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "declaration": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@tests/*": ["./tests/*"],
-      "@config/*": ["./config/*"]
-    },
     "types": ["codeceptjs", "node"]
   },
-  "include": [
-    "**/*.ts",
-    "tests/e2e/features/settings/settings_test.js",
-    "tests/e2e/features/profile/profile_test.ks"
-  ],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }

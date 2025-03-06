@@ -1,4 +1,4 @@
-import { BasePage } from "./base.page";
+import { BasePage } from './base.page';
 
 class HomePage extends BasePage {
   // Header locators
@@ -20,7 +20,7 @@ class HomePage extends BasePage {
   private settingsLink = '[data-testid="nav-settings"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, "/dashboard");
+    super(I, '/dashboard');
   }
 
   /**

@@ -1,7 +1,7 @@
-import { Helper } from "codeceptjs";
+import { Helper } from 'codeceptjs';
 
 class APIHelper extends Helper {
-  private token: string = "";
+  private token: string = '';
 
   /**
    * Set authentication token
@@ -56,7 +56,7 @@ class APIHelper extends Helper {
     if (this.token) {
       return {
         ...headers,
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${this.token}`,
       };
     }
     return headers;

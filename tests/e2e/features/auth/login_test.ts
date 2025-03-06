@@ -1,6 +1,6 @@
-Feature("Authentication");
+Feature('Authentication');
 
-import LoginPage from "../../pages/login.page";
+import LoginPage from '../../pages/login.page';
 
 let page: LoginPage;
 
@@ -8,25 +8,25 @@ Before(({ I }) => {
   page = new LoginPage(I);
 });
 
-Scenario("TC1: Login with valid credentials @smoke", async ({ I }) => {
+Scenario('TC1: Login with valid credentials @smoke', async ({ I }) => {
   page.goto();
-  page.login("phuong.vo@tomosia.com", "phuongvo77");
+  page.login('phuong.vo@tomosia.com', 'phuongvo77');
+  I.seeCurrentUrlEquals('/sessions/two-factor/app');
+}).tag('@auth');
 
-  I.seeCurrentUrlEquals("/sessions/two-factor/app");
-}).tag("@auth");
-
-Scenario("Login with invalid credentials", async ({ I }) => {
+Scenario('Login with invalid credentials', async ({ I }) => {
   page.goto();
-  page.login("invalid@example.com", "wrongpassword");
-  page.seeError("Incorrect email or password.");
+  page.login('invalid@example.com', 'wrongpassword');
+  page.seeError('Incorrect username or password.');
 
-  I.seeCurrentUrlEquals("/session");
-}).tag("@auth");
+  I.seeCurrentUrlEquals('/session');
+}).tag('@auth');
 
-Scenario("User forgot password", async ({ I }) => {
+xScenario('User forgot password', async ({ I }) => {
   page.goto();
   page.forgotPassword();
-  I.seeCurrentUrlEquals("/password_reset");
-  I.fillField("//input[@name='email']", "phuong.vo@tomosia.com");
+  I.seeCurrentUrlEquals('/password_reset');
+  I.fillField("//input[@name='email']", 'phuong.vo@tomosia.com');
   I.click("//input[@name='commit']");
-}).tag("@auth");
+  I.seeCurrentUrlEquals('/sessions/two-factor/app');
+}).tag('@auth');

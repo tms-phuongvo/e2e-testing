@@ -1,8 +1,8 @@
- export class BasePage {
+export class BasePage {
   protected I: CodeceptJS.I;
   protected url: string;
 
-  constructor(I: CodeceptJS.I, url: string = "/") {
+  constructor(I: CodeceptJS.I, url: string = '/') {
     this.I = I;
     this.url = url;
   }
@@ -25,7 +25,7 @@
    * Wait for page load
    */
   waitForLoad() {
-    this.I.waitForElement("body", 10);
+    this.I.waitForElement('body', 10);
   }
 
   /**
@@ -39,7 +39,7 @@
    * Take screenshot of current page
    */
   async screenshot(name: string) {
-    this.I.saveScreenshot(name + ".png");
+    this.I.saveScreenshot(name + '.png');
   }
 
   /**

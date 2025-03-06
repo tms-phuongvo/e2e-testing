@@ -1,11 +1,11 @@
-import { Helper } from "codeceptjs";
+import { Helper } from 'codeceptjs';
 
 class CommonHelper extends Helper {
   /**
    * Wait for element to be visible and clickable
    */
   async waitForClickable(locator: string, timeout = 10) {
-    const { Playwright, ChaiWrapper } = this.helpers;
+    const { Playwright } = this.helpers;
     await Playwright.waitForElement(locator, timeout);
     await Playwright.waitForClickable(locator, timeout);
   }
@@ -54,7 +54,7 @@ class CommonHelper extends Helper {
    * Assert element text
    */
   async assertText(locator: string, expectedText: string) {
-    const { Playwright, ChaiWrapper } = this.helpers;
+    const { ChaiWrapper } = this.helpers;
     const actualText = await this.getText(locator);
     ChaiWrapper.assert.equal(actualText, expectedText);
   }
@@ -64,7 +64,7 @@ class CommonHelper extends Helper {
    */
   async takeScreenshot(name: string) {
     const { Playwright } = this.helpers;
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     await Playwright.saveScreenshot(`${name}_${timestamp}.png`);
   }
 
@@ -74,7 +74,7 @@ class CommonHelper extends Helper {
   async scrollIntoView(locator: string) {
     const { Playwright } = this.helpers;
     await Playwright.executeScript((el: string) => {
-      document.querySelector(el)?.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(el)?.scrollIntoView({ behavior: 'smooth' });
     }, locator);
   }
 

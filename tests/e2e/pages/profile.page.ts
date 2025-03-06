@@ -1,4 +1,4 @@
-import { BasePage } from "./base.page";
+import { BasePage } from './base.page';
 
 class ProfilePage extends BasePage {
   // Profile form locators
@@ -22,18 +22,13 @@ class ProfilePage extends BasePage {
   private changePasswordButton = '[data-testid="change-password"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, "/profile");
+    super(I, '/profile');
   }
 
   /**
    * Update profile information
    */
-  updateProfile(data: {
-    name?: string;
-    email?: string;
-    phone?: string;
-    address?: string;
-  }) {
+  updateProfile(data: { name?: string; email?: string; phone?: string; address?: string }) {
     if (data.name) this.fillInput(this.nameInput, data.name);
     if (data.email) this.fillInput(this.emailInput, data.email);
     if (data.phone) this.fillInput(this.phoneInput, data.phone);
@@ -88,7 +83,7 @@ class ProfilePage extends BasePage {
       name: await this.I.grabValueFrom(this.nameInput),
       email: await this.I.grabValueFrom(this.emailInput),
       phone: await this.I.grabValueFrom(this.phoneInput),
-      address: await this.I.grabValueFrom(this.addressInput)
+      address: await this.I.grabValueFrom(this.addressInput),
     };
   }
 }

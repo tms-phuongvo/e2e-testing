@@ -59,7 +59,7 @@ HEADLESS=false
 ## Setup Project
 
 ```bash
-npx codeceptjs def # Convert codecept configuration to step type
+npm run generate:def # Convert codecept configuration to step type
 npx playwright install # Install playwright for OS
 ```
 
@@ -104,12 +104,12 @@ npm run test:api
 
 ### Generate Allure report
 ```bash
-npm run allure:report
+npm run allure:generate
 ```
 
-### View Allure report history
+### View Allure report
 ```bash
-npm run allure:history
+npm run allure:open
 ```
 
 ## Writing Tests

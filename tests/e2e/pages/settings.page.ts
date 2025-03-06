@@ -1,4 +1,4 @@
-import { BasePage } from "./base.page";
+import { BasePage } from './base.page';
 
 class SettingsPage extends BasePage {
   // General settings
@@ -25,7 +25,7 @@ class SettingsPage extends BasePage {
   private successMessage = '[data-testid="success-message"]';
 
   constructor(I: CodeceptJS.I) {
-    super(I, "/settings");
+    super(I, '/settings');
   }
 
   /**
@@ -38,7 +38,7 @@ class SettingsPage extends BasePage {
   /**
    * Update theme setting
    */
-  setTheme(theme: "light" | "dark" | "system") {
+  setTheme(theme: 'light' | 'dark' | 'system') {
     this.I.selectOption(this.themeSelect, theme);
   }
 
@@ -53,10 +53,7 @@ class SettingsPage extends BasePage {
    * Toggle email notifications
    */
   async toggleEmailNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(
-      this.emailNotifications,
-      "aria-checked"
-    );
+    const current = await this.I.grabAttributeFrom(this.emailNotifications, 'aria-checked');
     if (current !== String(enable)) {
       this.clickElement(this.emailNotifications);
     }
@@ -66,10 +63,7 @@ class SettingsPage extends BasePage {
    * Toggle push notifications
    */
   async togglePushNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(
-      this.pushNotifications,
-      "aria-checked"
-    );
+    const current = await this.I.grabAttributeFrom(this.pushNotifications, 'aria-checked');
     if (current !== String(enable)) {
       this.clickElement(this.pushNotifications);
     }
@@ -79,10 +73,7 @@ class SettingsPage extends BasePage {
    * Toggle SMS notifications
    */
   async toggleSmsNotifications(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(
-      this.smsNotifications,
-      "aria-checked"
-    );
+    const current = await this.I.grabAttributeFrom(this.smsNotifications, 'aria-checked');
     if (current !== String(enable)) {
       this.clickElement(this.smsNotifications);
     }
@@ -91,14 +82,14 @@ class SettingsPage extends BasePage {
   /**
    * Set profile visibility
    */
-  async setProfileVisibility(visibility: "public" | "private" | "friends") {
+  async setProfileVisibility(visibility: 'public' | 'private' | 'friends') {
     this.I.selectOption(this.profileVisibility, visibility);
   }
 
   /**
    * Set activity visibility
    */
-  async setActivityVisibility(visibility: "public" | "private" | "friends") {
+  async setActivityVisibility(visibility: 'public' | 'private' | 'friends') {
     this.I.selectOption(this.activityVisibility, visibility);
   }
 
@@ -106,10 +97,7 @@ class SettingsPage extends BasePage {
    * Toggle two-factor authentication
    */
   async toggleTwoFactor(enable: boolean) {
-    const current = await this.I.grabAttributeFrom(
-      this.twoFactorToggle,
-      "aria-checked"
-    );
+    const current = await this.I.grabAttributeFrom(this.twoFactorToggle, 'aria-checked');
     if (current !== String(enable)) {
       this.clickElement(this.twoFactorToggle);
     }
@@ -151,24 +139,12 @@ class SettingsPage extends BasePage {
       language: this.I.grabValueFrom(this.languageSelect),
       theme: this.I.grabValueFrom(this.themeSelect),
       timezone: this.I.grabValueFrom(this.timezoneSelect),
-      emailNotifications: this.I.grabAttributeFrom(
-        this.emailNotifications,
-        "aria-checked"
-      ),
-      pushNotifications: this.I.grabAttributeFrom(
-        this.pushNotifications,
-        "aria-checked"
-      ),
-      smsNotifications: this.I.grabAttributeFrom(
-        this.smsNotifications,
-        "aria-checked"
-      ),
+      emailNotifications: this.I.grabAttributeFrom(this.emailNotifications, 'aria-checked'),
+      pushNotifications: this.I.grabAttributeFrom(this.pushNotifications, 'aria-checked'),
+      smsNotifications: this.I.grabAttributeFrom(this.smsNotifications, 'aria-checked'),
       profileVisibility: this.I.grabValueFrom(this.profileVisibility),
       activityVisibility: this.I.grabValueFrom(this.activityVisibility),
-      twoFactorEnabled: this.I.grabAttributeFrom(
-        this.twoFactorToggle,
-        "aria-checked"
-      )
+      twoFactorEnabled: this.I.grabAttributeFrom(this.twoFactorToggle, 'aria-checked'),
     };
   }
 }

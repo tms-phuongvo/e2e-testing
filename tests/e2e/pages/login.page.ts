@@ -1,15 +1,15 @@
-import { BasePage } from "./base.page";
+import { BasePage } from './base.page';
 
 class LoginPage extends BasePage {
   // Locators
-  private emailInput = "#login_field";
-  private passwordInput = "#password";
+  private emailInput = '#login_field';
+  private passwordInput = '#password';
   private loginButton = "//input[@type='submit']";
-  private errorMessage = ".js-flash-alert";
-  private forgotPasswordLink = "#forgot-password";
+  private errorMessage = '.js-flash-alert';
+  private forgotPasswordLink = '#forgot-password';
 
   constructor(I: CodeceptJS.I) {
-    super(I, "/login");
+    super(I, '/login');
   }
 
   /**
@@ -53,8 +53,8 @@ class LoginPage extends BasePage {
    * Clear login form
    */
   clearForm() {
-    this.I.fillField(this.emailInput, "");
-    this.I.fillField(this.passwordInput, "");
+    this.I.fillField(this.emailInput, '');
+    this.I.fillField(this.passwordInput, '');
   }
 }
 

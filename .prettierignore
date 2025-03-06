@@ -1,0 +1,24 @@
+# compiled output
+/dist
+
+# Ignore artifacts:
+build
+coverage
+documentation
+logs
+node_modules
+
+# Ignore all HTML files:
+*.html
+.gitignore
+.prettierignore
+.husky
+
+package-lock.json
+package.json
+
+.eslintrc.js
+
+tsconfig.json
+
+steps.d.ts
