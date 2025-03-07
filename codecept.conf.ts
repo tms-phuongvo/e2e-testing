@@ -25,10 +25,10 @@ export const config = {
       video: true,
       windowSize: '1920x1080',
       emulate: devices['Desktop Chrome'],
-      basicAuth: {
-        username: process.env.BASIC_AUTH_USERNAME,
-        password: process.env.BASIC_AUTH_PASSWORD,
-      },
+      // basicAuth: {
+      //   username: process.env.BASIC_AUTH_USERNAME,
+      //   password: process.env.BASIC_AUTH_PASSWORD,
+      // },
       chromium: {
         args: ['--no-sandbox'],
       },
