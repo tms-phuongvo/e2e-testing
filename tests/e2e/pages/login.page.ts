@@ -7,11 +7,21 @@ class LoginPage extends BasePage {
   private loginButton = "//input[@type='submit']";
   private errorMessage = '.js-flash-alert';
   private forgotPasswordLink = '#forgot-password';
+  forgotPasswordURL = '/password_reset';
+  createAnAcountURL = '/signup?source=login';
 
   constructor(I: CodeceptJS.I) {
     super(I, '/login');
   }
+  export = {
 
+    // insert your locators and methods here
+    text: {
+      loginButton: 'Sign in',
+      emailInput: 'Username or email address',
+      passwordInput: 'Password'
+    }
+  }
   /**
    * Login with email and password
    */
@@ -20,14 +30,22 @@ class LoginPage extends BasePage {
     this.I.fillField(this.passwordInput, password);
     this.I.click(this.loginButton);
   }
-
   /**
    * Click forgot password link
    */
-  forgotPassword() {
-    this.I.click(this.forgotPasswordLink);
+  gotoForGotPassword() {
+    this.I.click("//a[@id='forgot-password']");
+    this.I.waitForNavigation({ timeout: 30000 });
+    this.I.seeInCurrentUrl(this.forgotPasswordURL);
   }
-
+  /**
+     * Click Create an account
+     */
+  gotoSignUpURL() {
+    this.I.click("//a[text()='Create an account']");
+    this.I.waitForNavigation({ timeout: 30000 });
+    this.I.seeInCurrentUrl(this.createAnAcountURL);
+  }
   /**
    * Get error message if login fails
    */
@@ -58,4 +76,4 @@ class LoginPage extends BasePage {
   }
 }
 
-export default LoginPage;
+export = LoginPage;
