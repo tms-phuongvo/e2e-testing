@@ -14,6 +14,7 @@
     "test:api": "codeceptjs run --grep @api",
     "allure:generate": "allure generate ./allure-results -o ./output/allure-report",
     "allure:open": "allure open ./output/allure-report",
+    "allure:openfile": "allure open",
     "generate:def": "npx codeceptjs def",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
